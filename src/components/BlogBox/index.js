@@ -9,7 +9,7 @@ const BlogBox = (props) => {
           <div style={{ width: "100%", height: "150px" }}
             className='mb-5 bg-red-100 flex '
           >
-               <img style={styles.img} className='w-full h-full' src="https://cdn.educba.com/academy/wp-content/uploads/2019/05/web-application.gif" alt="" />
+               <img style={styles.img} className='w-full h-full' src={props?.image} alt="" />
           </div>
           <p className='px-2 text-xs text-gray-400 mb-5'>{props.date} | {props.feild}</p>
           <h1 className='text-m mb-5 px-2'>{props.title}</h1>

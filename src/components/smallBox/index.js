@@ -1,44 +1,75 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useRef } from 'react';
 
-const SmallBox = (props) => {
-  return (
-    <>
-      <div className='h-20 hover:shadow-md' style={styles.maindiv} >
-        <div style={styles.imageMainDiv}>
+const SmallBox = ({ title, description }) => {
+ const [count, setCount] = useState(0);
+ const [hasAnimated, setHasAnimated] = useState(false);
+ const boxRef = useRef(null);
 
-        </div>
-        <h1
-          className='text-black text-4xl font-bold text-red-600 mb-3'>{props.title}</h1>
+ useEffect(() => {
+   const observer = new IntersectionObserver(
+     ([entry]) => {
+       if (entry.isIntersecting && !hasAnimated) {
+         startCounting();
+         setHasAnimated(true);
+       }
+     },
+     { threshold: 0.3 }
+   );
 
-        <p className='text-m text-gray-500'>
-          <div className='text-xl text-gray-600'>
-            {props.description}
-          </div>
-        </p>
-      </div>
-    </>
-  )
-}
+   if (boxRef.current) observer.observe(boxRef.current);
 
+   return () => {
+     if (boxRef.current) observer.unobserve(boxRef.current);
+   };
+ }, [hasAnimated]);
+
+ const startCounting = () => {
+   let start = 0;
+   const end = parseInt(title, 10) || 0;
+   const duration = 2000; // fixed 2 seconds
+   const frameRate = 16; // ~60fps
+   const totalFrames = Math.round(duration / frameRate);
+   const increment = end / totalFrames;
+
+   const timer = setInterval(() => {
+     start += increment;
+     if (start >= end) {
+       start = end;
+       clearInterval(timer);
+     }
+     setCount(Math.floor(start));
+   }, frameRate);
+ };
+
+ return (
+   <div
+     ref={boxRef}
+     className="hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-out rounded-xl"
+     style={styles.maindiv}
+   >
+     {/* Counter */}
+     <h1 className="text-4xl font-bold text-red-600 mb-3">
+       {count}
+     </h1>
+
+     {/* Description */}
+     <p className="text-lg text-gray-600">{description}</p>
+   </div>
+ );
+};
 
 const styles = {
-  maindiv: {
-    border: '1px solid white',
-    borderRadius: "5px",
-    padding: "20px 10px",
-    paddingBottom: "30px",
-    textAlign: "center",
-    width: "250px",
-    height: "auto",
-    transition: 'all 0.5s',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Add box shadow here
-  },
-  imageMainDiv: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  }
-}
+ maindiv: {
+   border: '1px solid #f3f3f3',
+   padding: '20px 10px',
+   textAlign: 'center',
+   width: '250px',
+   height: 'auto',
+   transition: 'all 0.5s',
+   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+   background: 'white',
+ },
+};
 
-export default SmallBox
+export default SmallBox;
+

@@ -1,0 +1,37 @@
+.chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1000; 
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s;
+}
+
+.chatbot-button:hover {
+    background-color: red;
+}
+
+
+@keyframes pulse {
+   0% {
+       transform: scale(1);
+   }
+   50% {
+       transform: scale(1.05);
+   }
+   100% {
+       transform: scale(1);
+   }
+}
+
+.chatbot-button:hover {
+   animation: pulse 1.5s infinite;
+}

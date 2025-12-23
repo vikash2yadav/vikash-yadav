@@ -15,12 +15,11 @@ const Box = (props) => {
           </div>
 
         </div>
-        <h1
-          className='text-black text-xl font-semibold mb-5'>{props.title}</h1>
+        <h1 className='text-black text-xl font-semibold mb-5'>{props.title}</h1>
 
         <p className='text-m text-gray-500'>
           {props.add ? (props.add)
-            : (<Link className='text-m text-blue-500'>
+            : (<Link to={props?.to} className='text-m text-blue-500' target='_blank'>
               {props.description}
             </Link>
             )
