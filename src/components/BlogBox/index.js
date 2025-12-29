@@ -27,7 +27,8 @@ const styles = {
     marginBottom: "30px",
     paddingBottom: "30px",
     textAlign: "center",
-    width: "300px",
+    minWidth: "250px",
+    maxWidth: "300px",
     height: "auto",
     transition: 'all 0.5s',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Add box shadow here

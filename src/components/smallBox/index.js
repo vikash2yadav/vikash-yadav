@@ -63,6 +63,7 @@ const styles = {
    border: '1px solid #f3f3f3',
    padding: '20px 10px',
    textAlign: 'center',
+   marginBottom: "10px",
    width: '250px',
    height: 'auto',
    transition: 'all 0.5s',

@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { lazy, Suspense }  from 'react'
 import { Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
-import Projects from './pages/Projects'
+import Loader from "./components/Loader";
 
 const App = () => {
   return (
     
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-
-      </Routes>
+        <Routes>
+      <Route
+        path="/" 
+        element={
+          <Suspense fallback={<Loader />}>
+            <Home />
+          </Suspense>
+        }
+      />
+    </Routes>
 
   )
 }

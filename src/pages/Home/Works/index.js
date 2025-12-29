@@ -56,7 +56,7 @@ const Works = () => {
             <div
               key={index}
               className="project-card w-full md:w-1/3"
-              style={{ height: "300px" }}
+              style={{ height: "300px", marginBottom: "2px" }}
             >
               <a href={item?.link} target="_blank" rel="noopener noreferrer">
                 <img
