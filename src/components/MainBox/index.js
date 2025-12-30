@@ -5,9 +5,9 @@ import Button from "../Button";
 
 const words = [
   "Vikash Yadav",
-  "Web Developer",
+  "Developer",
   "Programmer",
-  "Android Developer",
+ // "Android Developer",
   "Coder",
 ];
 
